@@ -1,0 +1,12 @@
+[tool.ruff.lint]
+ignore = [
+    "D",  # docstring
+    "RUF002",  # ambiguous unicode characters
+    "S311",  # pseudo-random
+]
+select = ["ALL"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
