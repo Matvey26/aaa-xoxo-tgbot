@@ -1,10 +1,5 @@
 import os
 
-# from dotenv import load_dotenv
-
-# Загружает переменные из .env в окружение
-# load_dotenv()
-
 # get token using BotFather
 TOKEN = os.getenv("TG_TOKEN")
 

@@ -19,7 +19,7 @@ jobs:
           script: |
             set -e
 
-            cd /home/${{ secrets.USER }}/workspace/aaa-xoxo-bot
+            cd /${{ secrets.USER }}/workspace/aaa-xoxo-tgbot
 
             echo "Pull latest code..."
             git pull origin feature-mvp
@@ -28,18 +28,18 @@ jobs:
             mkdir -p data
 
             echo "Stop old container..."
-            docker stop aaa-xoxo-bot || true
-            docker rm aaa-xoxo-bot || true
+            docker stop xoxo_bot || true
+            docker rm xoxo_bot || true
 
             echo "Build new image..."
-            docker build -t aaa-xoxo-bot .
+            docker build -t xoxo_bot .
 
             echo "Run container with SQLite volume..."
             docker run -d \
-              --name aaa-xoxo-bot \
+              --name xoxo_bot \
               -e TG_TOKEN=${{ secrets.TG_TOKEN }} \
-              -v ~/workspace/aaa-xoxo-bot/data:/data \
+              -v ${{ secrets.USER }}/workspace/aaa-xoxo-tgbot/data:/data \
               --restart unless-stopped \
-              aaa-xoxo-bot
+              xoxo_bot
 
             echo "Deploy complete"
