@@ -3,7 +3,7 @@ name: Deploy bot
 on:
   push:
     branches:
-      - feature-mvp
+      - main
 
 jobs:
   deploy:
@@ -22,7 +22,7 @@ jobs:
             cd /${{ secrets.USER }}/workspace/aaa-xoxo-tgbot
 
             echo "Pull latest code..."
-            git pull origin feature-mvp
+            git pull origin main
 
             # папка для SQLite (если ещё нет)
             mkdir -p data
