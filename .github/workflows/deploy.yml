@@ -19,7 +19,7 @@ jobs:
           script: |
             set -e
 
-            cd ~/workspace/aaa-xoxo-bot
+            cd /home/${{ secrets.USER }}/workspace/aaa-xoxo-bot
 
             echo "Pull latest code..."
             git pull origin feature-mvp
