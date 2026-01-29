@@ -28,18 +28,18 @@ jobs:
             mkdir -p data
 
             echo "Stop old container..."
-            docker stop xoxo_bot || true
-            docker rm xoxo_bot || true
+            docker stop xoxo-bot || true
+            docker rm xoxo-bot || true
 
             echo "Build new image..."
-            docker build -t xoxo_bot .
+            docker build -t xoxo-bot .
 
             echo "Run container with SQLite volume..."
             docker run -d \
-              --name xoxo_bot \
+              --name xoxo-bot \
               -e TG_TOKEN=${{ secrets.TG_TOKEN }} \
               -v ${{ secrets.USER }}/workspace/aaa-xoxo-tgbot/data:/data \
               --restart unless-stopped \
-              xoxo_bot
+              xoxo-bot
 
             echo "Deploy complete"
