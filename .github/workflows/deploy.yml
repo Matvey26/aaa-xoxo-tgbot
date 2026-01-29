@@ -38,7 +38,7 @@ jobs:
             docker run -d \
               --name xoxo-bot \
               -e TG_TOKEN=${{ secrets.TG_TOKEN }} \
-              -v ${{ secrets.USER }}/workspace/aaa-xoxo-tgbot/data:/data \
+              -v "$(pwd)/data:/data" \
               --restart unless-stopped \
               xoxo-bot
 
