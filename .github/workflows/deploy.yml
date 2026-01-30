@@ -1,0 +1,45 @@
+name: Deploy bot
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_NL_PRIVATE_KEY }}
+          script: |
+            set -e
+
+            cd /${{ secrets.USER }}/workspace/aaa-xoxo-tgbot
+
+            echo "Pull latest code..."
+            git pull origin main
+
+            # папка для SQLite (если ещё нет)
+            mkdir -p data
+
+            echo "Stop old container..."
+            docker stop xoxo-bot || true
+            docker rm xoxo-bot || true
+
+            echo "Build new image..."
+            docker build -t xoxo-bot .
+
+            echo "Run container with SQLite volume..."
+            docker run -d \
+              --name xoxo-bot \
+              -e TG_TOKEN=${{ secrets.TG_TOKEN }} \
+              -v "$(pwd)/data:/data" \
+              --restart unless-stopped \
+              xoxo-bot
+
+            echo "Deploy complete"
