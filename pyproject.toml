@@ -5,6 +5,11 @@ ignore = [
     "S311",  # pseudo-random
 ]
 select = ["ALL"]
+exclude = [
+    "tests/",
+    "test_*.py",
+    "*_test.py",
+]
 
 [tool.ruff.format]
 quote-style = "double"
