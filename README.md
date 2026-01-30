@@ -4,5 +4,16 @@
 Запуск:
 
 ```bash
-docker run -d --name aaa-xoxo-bot -e TG_TOKEN=... -v ~/workspace/aaa-xoxo-bot/data:/data --restart unless-stopped aaa-xoxo-bot
+# cd /path/to/project
+
+# билдим образ, если ещё не сделали этого
+docker build -t xoxo-bot .
+
+# запускаем контейнер
+docker run -d \
+    --name xoxo-bot \
+    -e TG_TOKEN=ваш_токен \
+    -v "$(pwd)/data:/data" \
+    --restart unless-stopped \
+    xoxo-bot
 ```

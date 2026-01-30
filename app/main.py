@@ -28,7 +28,6 @@ logging.getLogger("httpx").setLevel(logging.WARNING)
 logger = logging.getLogger(__name__)
 
 
-
 def main() -> None:
     """Run the bot."""
     # Create the Application and pass it your bot"s token.

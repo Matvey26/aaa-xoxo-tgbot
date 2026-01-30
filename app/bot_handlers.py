@@ -18,7 +18,7 @@ from constants import (
     WIDTH,
     ZERO,
 )
-from utils import generate_keyboard, get_default_state, make_move, won
+from app.game import generate_keyboard, get_default_state, make_move, won
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:

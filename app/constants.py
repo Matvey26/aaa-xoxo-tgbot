@@ -15,3 +15,5 @@ END_MESSAGE = "The {sign} won!"
 WIDTH = 3
 
 DEFAULT_STATE = [ [FREE_SPACE for _ in range(WIDTH) ] for _ in range(WIDTH) ]
+
+DB_PATH = os.getenv("DB_PATH", "bot.db")
