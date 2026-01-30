@@ -4,5 +4,19 @@
 Запуск:
 
 ```bash
-docker run -d --name aaa-xoxo-bot -e TG_TOKEN=... -v ~/workspace/aaa-xoxo-bot/data:/data --restart unless-stopped aaa-xoxo-bot
+docker stop xoxo-bot || true
+docker rm xoxo-bot || true
+
+echo "Build new image..."
+docker build -t xoxo-bot .
+
+echo "Run container"
+docker run -d \
+    --name xoxo-bot \
+    -e TG_TOKEN=... \
+    -v "$(pwd)/data:/data" \
+    --restart unless-stopped \
+    xoxo-bot
+
+echo "Deploy complete"
 ```
